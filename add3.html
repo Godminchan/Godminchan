@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const { body } = document;
+
+        const $table = document.createElement('table');
+        const $result = document.createElement('div');
+        const row = [];
+        let turn = 'O';
+
+
+
+        const checkWinnerAndDraw = (target) => {
+            const rowIndex = target.parentNode.rowIndex;
+            const cellIndex = target.cellIndex;
+
+            let hasWinner = false;
+            if (
+                row[0][cellIndex].textContent === turn &&
+                row[1][cellIndex].textContent === turn &&
+                row[2][cellIndex].textContent === turn
+            ) {
+                hasWinner = true;
+            }
+            if (
+
+                row[rowIndex][0].textContent === turn &&
+                row[rowIndex][1].textContent === turn &&
+                row[rowIndex][2].textContent === turn
+            ) {
+                hasWinner = true;
+            }
+            if (
+                row[0][0].textContent === turn &&
+                row[1][1].textContent === turn &&
+                row[2][2].textContent === turn
+
+            ) {
+                hasWinner = true;
+            }
+            if (
+                row[0][2].textContent === turn &&
+                row[1][1].textContent === turn &&
+                row[2][0].textContent === turn
+
+            ) {
+                hasWinner = true;
+            }
+            return hasWinner;
+        };
+const fun = (target) => {
+    const hasWinner = checkWinnerAndDraw(target);
+            if (hasWinner) {
+                $result.textContent = `${turn} 님이 승리 ! `;
+                $table.removeEventListener('click', callback);
+            }
+            const draw = row.flat().every((cell) => cell.textContent);
+            if (draw) {
+                $result.textContent = 'draw';
+                $table.removeEventListener('click', callback);
+            }
+            };
+
+
+            const callback = (event) => {
+                if (event.target.textContent !== '') {
+                    console.log('빈칸아님');
+                    return;
+                }
+                event.target.textContent = turn;
+                fun(event.target);
+                //  //           if (hasWinner){
+                //  //               $result.textContent = `${turn} 님이 승리 ! `;
+                //  //               $table.removeEventListener('click', callback);
+                //   //              return;
+                //             // }
+                //            const draw =row.flat().every((cell) => cell.textContent);
+                //            if (draw) {
+                //                $result.textContent = 'draw';
+                //                $table.removeEventListener('click', callback);
+                //                return;
+                //            }
+
+                turn = turn === 'X' ? 'O' : 'X';
+                if (turn === 'X') {
+                    const emptyCells = row.flat().filter((v) => !v.textContent);
+                    const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+                    randomCell.textContent = 'X';
+                    fun(randomCell);
+                        //     if (hasWinner){
+                    //         $result.textContent = `${turn} 님이 승리 ! `;
+                    //         $table.removeEventListener('click', callback);
+                    //         return;
+                    //     }
+                    //     const draw =row.flat().every((cell) => cell.textContent);
+                    //    if (draw) {
+                    //        $result.textContent = 'draw';
+                    //        $table.removeEventListener('click', callback);
+                    //        return;
+                    //    }         
+                    // 생각하는 컴퓨터  === > 내생각엔 1,2 두면 3막고 뭐그런거 같은데
+                    // 
+                }
+                turn = turn === 'X' ? 'O' : 'X';
+            };
+
+            for (let i = 1; i <= 3; i++) {
+                const $tr = document.createElement('tr')
+                const cells = [];
+                for (let j = 1; j <= 3; j++) {
+                    const $td = document.createElement('td');
+                    cells.push($td);
+                    $tr.append($td);
+                }
+                row.push(cells);
+                $table.appendChild($tr);
+
+                $table.addEventListener('click', callback);
+            }
+
+
+            body.appendChild($table)
+            body.appendChild($result)
+
+    </script>
+</body>
+
+</html>

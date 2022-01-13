@@ -1,0 +1,47 @@
+const $wrapper = document.querySelector('#wrapper');
+
+const total = parseInt(prompt('카드 개수를 짝수로 입력하세요(최대 20).'));
+
+const colors = [
+  'red', 'orange', 'yellow', 'green', 'white',
+  'pink', 'cyan', 'violet', 'gray', 'black',
+];
+let colorSlice = colors.slice(0, total / 2);
+let colorCopy = colorSlice.concat(colorSlice);
+let shuffled = [];
+let clicked = [];
+let completed = [];
+let clickable = false;
+let startTime;
+
+function shuffle() {...}
+
+function createCard(i) {...}
+
+function onClickCard() {
+  ...
+  if (firstBackColor === secondBackColor) { // 두 카드가 같은 카드면
+    ...
+    const endTime = new Date();
+    setTimeout(() => {
+      alert(`축하합니다! ${(endTime -     startTime) / 1000}초 걸렸습니다.`);
+      resetGame();
+    }, 1000);
+    return;
+  }
+  ...
+}
+
+function startGame() {
+  ...
+  setTimeout(() => { // 카드 감추기
+    document.querySelectorAll('.card').forEach((card) => {
+      card.classList.remove('flipped');
+    });
+    clickable = true;
+    startTime = new Date();
+  }, 5000);
+}
+
+function resetGame(){...}
+startGame()

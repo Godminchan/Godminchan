@@ -1,0 +1,225 @@
+import "dart:math";
+
+enum Job{War,Knight,Magic}
+
+void main(){
+  Person abc = new Person(
+    name : 'abc', power : 10, hp: 230
+  );
+  Person def = new Person(
+    name : 'def', power : 18, hp: 170
+  );
+
+abc.display();
+abc.attck(def);
+
+}
+
+class Person {
+  String _name;
+  String _job;
+  String _group;
+  int _power;
+  int _hp;
+
+  Person({
+    String name ='',
+    String job = '없음' ,
+      String group = '없음' ,
+      int power = 0,
+    int hp = 0,
+    }) : this._name = name,
+  this._job = job,
+  this._group = group,
+  this._power = power,
+  this._hp = hp;
+
+  void attck(Person P){
+    int sword = 0;
+print('${this._name}이 ${P._name}을 공격');
+  P._hp -= this._power+ sword;
+  }
+  void randomjob(){
+    var a = new Random().nextInt(3);
+      Job b;
+    if(a ==0){
+      b = Job.War;
+    }
+    else if (a ==1){
+      b = Job.Knight;
+    }
+    else {
+      b= Job.Magic;
+    }
+    }
+https://arca.live/b/smpeople/29362556 
+
+
+
+void display(){
+  print('${this._name}이 당신의 이름');
+    print('${this._job}이 당신의 직업');
+ print('${this._hp}이 당신의 체력');
+  }
+  String get name{
+    return this._name;
+  }
+  set name(String name){
+    this._name=name;
+  }
+  String get job{
+    return this._job;
+  }
+  set job(String job){
+    this._job = job;
+  }
+  String get group{
+    return this._group;
+  }
+  set group(String group){
+    this._group =group;
+  }
+}
+
+
+
+/./////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+import "dart:math";
+
+enum Job{War,Knight,Magic}
+
+void main(){
+  Person abc = new Person(
+    name : 'abc', power : 10, hp: 230
+  );
+  Person def = new Person(
+    name : 'def', power : 18, hp: 170
+  );
+
+abc.skill(def);
+def.display();
+
+}
+
+class Person {
+  String _name;
+  String _job;
+  String _group;
+  int _power;
+  int _hp;
+
+  Person({
+    String name ='',
+    String job = '없음' ,
+      String group = '없음' ,
+      int power = 0,
+    int hp = 0,
+    }) : this._name = name,
+  this._job = job,
+  this._group = group,
+  this._power = power,
+  this._hp = hp;
+
+//  void attck(Person P){
+//    int sword = 0;
+//    print('${this._name}이 ${P._name}을 공격');
+//  P._hp -= this._power+ sword;
+//  }
+
+
+     void skill(Person P,{int force = 10}) {
+if(Job.War == this.job){
+    int attack() {
+    return this._hp + 0;
+      }
+}
+     if(Job.Knight == this.job){
+       int healing() {
+         return this._hp + 20;
+       }
+       if(Job.Magic == this.job){
+         int magicPowerUp(){
+           return this._power*10;
+         }
+       }
+       else{
+         print('스킬을 배우지 않음');
+       }
+   
+     }
+   }
+  
+  void randomjob(){
+    var a = new Random().nextInt(3);
+      Job b = Job.War;
+    if(a ==0){
+      b = Job.War;
+    }
+    else if (a ==1){
+      b = Job.Knight;
+    }
+    else {
+      b= Job.Magic;
+    }
+    }
+void display(){
+  print('${this._name}이 당신의 이름');
+    print('${this._job}이 당신의 직업');
+ print('${this._hp}이 당신의 체력');
+  }
+  String get name{
+    return this._name;
+  }
+  set name(String name){
+    this._name=name;
+  }
+  String get job{
+    return this._job;
+  }
+  set job(String job){
+    this._job = job;
+  }
+  String get group{
+    return this._group;
+  }
+  set group(String group){
+    this._group =group;
+  }
+  
+}
+
+  // Overriding 관련 문제 클래스 함수는 퍼슨 함수를 상속받으며 attack healing magicPowerUp 상송
+  
+  // force 값 추가 선언 10 .... attack healing 함수는 오버라이드 값으로 계산
+  
+  // magicPowerUP 함수는 power*force
+  
+  // job 함수에 따라 다른 스킬... 
+  
+  class NewF extends Person {
+    NewF( 
+    String name,
+      String job,
+      String group,
+      int power,
+      int hp,
+      )  : super(
+    name: name,
+    group: group,
+    job: job,
+    power: power,
+    hp: hp
+    ); 
+@override
+     int attack(){
+          return _hp - this._power;
+      }     
+    
+  }
+        
+         
+  
